@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu1": "menu1",
+    "menu2": "menu2",
+    "menu3": "menu3",
+    "menu4": {
+      "menu4-1": "menu4",
+      "menu4-2": "menu4-2",
+      "menu4-3": "menu4-2"
+    },
+    "menu5": "menu5",
+    "logout": "Déconnexion"
+  },
+  "paginator": {
+    "next": "Suivant",
+    "prev": "Précédent",
+    "last": "Dernière page",
+    "first": "Première page"
+  },
+  "bottomBar": {
+    "bottom1": "bottom1",
+    "bottom2": "bottom2",
+    "bottom3": "bottom3"
+  },
+  "dlg": {
+    "deleteTitle": "Supprimer ?",
+    "logoutTitle": "Déconnecter",
+    "logoutContent": "Pour des raisons de sécurité, vous avez été déconnecté",
+    "logoutOk": "Continuer"
+  },
+  "ws": {
+    "success": "Opération réussie",
+    "error": "Une erreur est survenue",
+    "badLogin": "Vérifier vos identifiants"
+  },
+  "dev": {
+    "nyi": "Pas encore implémenté"
+  }
+}
