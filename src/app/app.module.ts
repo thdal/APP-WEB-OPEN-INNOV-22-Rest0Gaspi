@@ -12,10 +12,15 @@ import { SnackbarService } from './shared/snackbar.service';
 import { DatePipe } from '@angular/common';
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
+import { DashboardComponent } from './dashboard.component/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,7 @@ import {AppRoutingModule} from "./app-routing.module";
     })
   ],
   providers: [SnackbarService, DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, DashboardComponent]
 })
 export class AppModule { }
 
