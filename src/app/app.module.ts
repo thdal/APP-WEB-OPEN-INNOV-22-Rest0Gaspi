@@ -14,13 +14,16 @@ import {RouterModule, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { DashboardComponent } from './dashboard.component/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
