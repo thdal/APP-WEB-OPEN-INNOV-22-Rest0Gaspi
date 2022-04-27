@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Rechercher un menu</h3>
+      <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+               aria-describedby="search-addon" (keyup)="searchInput($event)" />
+        <span class="input-group-text border-0" id="search-addon">
+          <i class="bi bi-search"></i>
+        </span>
+      </div>
+    </div>
+    <ul class="list-unstyled components ul-gl">
+      <div class="div-li-gl">
+        <li  class="li-gl">
+          <a [class.li-a-active-gl]="getAllSelected" class="a-gl" ngDefaultControl (click)="getAllEvents()"><img src="../../../../assets/img/icons/left-menu/all.svg" width="{{iconWidth}}" height="{{iconHeight}}"> Tous les menus</a>
+          <a [class.li-a-active-gl]="getAllOfTheDaySelected" class="a-gl" ngDefaultControl (click)="getEventsOfTheDay()"><img src="../../../../assets/img/icons/left-menu/24-hours.svg" width="{{iconWidth}}" height="{{iconHeight}}"> Menus du jour</a>
+        </li>
+      </div>
+      <p class="p-subtitle-gl">Categories</p>
+      <div class="div-li-gl">
+        <li class="li-gl" *ngFor="let menuType of menuTypesRecord; let i = index" [class.li-a-active-gl]="selectedCatIndex === i" (click)="setCatIndex(i)">
+          <a class="a-gl" ngDefaultControl [(ngModel)]="menuType.id" (click)="sortByType(menuType.id, menuType.typeMenuName)"><img src="../../../assets/img/icons/left-menu/Types/{{removeAccent(menuType.typeMenuName)}}.png" width="{{iconWidth}}" height="{{iconHeight}}"> {{menuType.typeMenuName}}</a>
+        </li>
+      </div>
+    </ul>
+    <!--<ul class="list-unstyled components ul-gl">
+      <p class="p-subtitle-gl">Canaux</p>
+      <div class="div-li-gl">
+        <li [class.li-a-active-gl]="selectedCanalIndex === i" (click)="setCanalIndex(i)" class="li-gl" *ngFor="let eventCanal of eventCanalsRecord ; let i = index">
+          <a class="a-gl" ngDefaultControl [(ngModel)]="eventCanal.id" (click)="sortByCanal(eventCanal.id, eventCanal.canalEventName)"><img src="../../../assets/img/icons/left-menu/Canaux/{{eventCanal.canalEventName}}.svg" width="{{iconWidth}}" height="{{iconHeight}}"> {{eventCanal.canalEventName}} </a>
+        </li>
+      </div>
+    </ul>-->
+  </nav>
+</div>

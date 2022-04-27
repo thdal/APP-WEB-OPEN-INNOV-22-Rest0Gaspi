@@ -1,0 +1,47 @@
+<nav [ngClass]="currentUser.profile_id == 3 ? 'bg-navbar-admin-gl' : 'bg-navbar-gl'" class="navbar navbar-expand-lg navbar-light bg-navbar-gl">
+  <a style="margin-left:10px;" class="navbar-brand navbar-brand-gl" style="cursor:pointer; margin-left:5px;" (click)="goToHome()">Rest0Gaspi</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav nav-pills main-ul" style="align-items: center;">
+      <li [style]="currentUser.profile_id == 2 ? 'visibility:hidden;' : 'display:visibile'" class="nav-item">
+        <a (click)="goToHome()" [ngClass]="currentUser.profile_id == 3 ? 'nav-admin-link-gl' : 'nav-link-gl'" class="nav-link" id=""><i class="bi bi-house"></i> Accueil<span class="sr-only">(current)</span></a>
+      </li>
+      <li [style]="currentUser.profile_id == 2 ? 'visibility:hidden;' : 'display:visibile'" class="nav-item">
+        <a [ngClass]="currentUser.profile_id == 3 ? 'nav-admin-link-gl' : 'nav-link-gl'" class="nav-link" id="eventsList" (click)="goToMyEvents()"><i class="bi bi-calendar-event"></i> Mes menus</a>
+      </li>
+      <li [style]="currentUser.profile_id == 2 ? 'visibility:hidden;' : 'display:visibile'" class="nav-item">
+        <a [ngClass]="currentUser.profile_id == 3 ? 'nav-admin-link-gl' : 'nav-link-gl'" class="nav-link" id="addAnEvent" (click)="addAnEvent()"><i class="bi bi-plus-square"></i> Ajouter un menu</a>
+      </li>
+      <li [style]="currentUser.profile_id != 3 ? 'visibility:hidden;' : 'display:visibile'" class="nav-item">
+      <a [ngClass]="currentUser.profile_id == 3 ? 'nav-admin-link-gl' : 'nav-link-gl'" class="nav-link" id="manageUsers" (click)="manageUsers()"><i class="bi bi-person-lines-fill"></i> Gestion des utilisateurs</a>
+      </li>
+      <li *ngIf="currentUser.id" class="nav-item dropdown" style="position:absolute; right:0px">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img *ngIf="!currentUser.userImg"
+               [src]="getTopImage()"
+               class="rounded-circle" width="50" height="50" alt="User image"/>
+          <!-- false == 0 -->
+          <img *ngIf="currentUser.userImg" class="rounded-circle" width="50" height="50" src="{{apiUrl}}userId{{currentUser.id}}/userImg.jpg" alt="User image from server"/>
+        </a>
+        <div class="dropdown-menu" style="right: 0; left: auto;" aria-labelledby="navbarDropdownMenuLink">
+          <!--<a class="dropdown-item" href="#">Dashboard</a>
+          [style]="currentUser.profile_id != 3 ? ':hover{background-color:red;}' : ':hover{background-color:red;}'"
+          -->
+          <a style="cursor:pointer;" class="dropdown-item" (click)="editUserProfile();"><i class="bi bi-gear"></i> Éditer son profil</a>
+          <a *ngIf="currentUser" class="dropdown-item" style="cursor:pointer;"(click)="logout()">
+            <i class="bi bi-door-open"></i> Se déconnecter</a>
+        </div>
+      </li>
+      <li *ngIf="!currentUser.id" class="nav-item" style="position:absolute; right:5px">
+          <a *ngIf="currentUser" class="a-logout-visiteur-gl" style="padding: 0px 10px;cursor:pointer;border:1px solid white; border-radius:50px;" (click)="signUp()">
+            <span>S'inscrire</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+

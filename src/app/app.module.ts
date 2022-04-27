@@ -1,49 +1,94 @@
-import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppComponent } from './app.component';
-import { ApiModule } from './core/api.module';
-import { FeatureModule } from './feature/feature.module';
-import { SharedModule } from './shared/shared.module';
-import { SnackbarService } from './shared/snackbar.service';
-import { DatePipe } from '@angular/common';
-import {RouterModule, RouterOutlet} from "@angular/router";
-import {AppRoutingModule} from "./app-routing.module";
-import { DashboardComponent } from './dashboard.component/dashboard.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import {DatePipe} from '@angular/common';
 
+import { AppComponent } from './app.component';
+import { HomeComponent } from './Components/home/home.component';
+import { LoginComponent } from './Components/user/Pages/login/login.component';
+import { RegisterComponent } from './Components/user/Pages/register/register.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import {ShareButtonsModule} from "ngx-sharebuttons/buttons";
+import {ShareIconsModule} from "ngx-sharebuttons/icons";
+
+import { ToastrModule } from 'ngx-toastr';
+
+// services
+import { InterceptorService } from './_services/interceptor.service';
+import { UserService } from './_services/user.service';
+import { MenuTopComponent } from './Components/menu/menu-top/menu-top.component';
+import { MenuLeftComponent } from './Components/menu/menu-left/menu-left.component';
+import { MenuRestauListComponent } from './Components/menu-restau/Composants/menu-restau-list/menu-restau-list.component';
+import {JwPaginationModule} from "jw-angular-pagination";
+import { AddMenuRestauComponent } from './Components/menu-restau/Pages/add-menu-restau/add-menu-restau.component';
+import { MenuRestauFormComponent } from './Components/menu-restau/Composants/menu-restau-form/menu-restau-form.component';
+import { MyMenuRestauComponent } from './Components/menu-restau/Pages/my-menu-restau/my-menu-restau.component';
+import { SetMenuRestauComponent } from './Components/menu-restau/Pages/set-menu-restau/set-menu-restau.component';
+import { ShowMenuRestauComponent } from './Components/menu-restau/Pages/show-menu-restau/show-menu-restau.component';
+import { MenuRestauViewComponent } from './Components/menu-restau/Composants/menu-restau-view/menu-restau-view.component';
+import { MenuRestauPaginationComponent } from './Components/menu-restau/Composants/menu-restau-pagination/menu-restau-pagination.component';
+import { ProfileFormComponent } from './Components/user/Composants/profile-form/profile-form.component';
+import { EditUserProfileComponent } from './Components/user/Pages/edit-user-profile/edit-user-profile.component';
+import { UsersListComponent } from './Components/user/Composants/users-list/users-list.component';
+import { UserAdministrationComponent } from './Components/user/Pages/user-administration/user-administration.component';
+import { MenuRestauNotFoundComponent } from './Components/menu-restau/Composants/menu-restau-not-found/menu-restau-not-found.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { PrivacyPolicyComponent } from './Components/resources/Pages/privacy-policy/privacy-policy.component';
+import { LegalNoticesComponent } from './Components/resources/Pages/legal-notices/legal-notices.component';
+import { CguComponent } from './Components/resources/Pages/cgu/cgu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    NavbarComponent
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    MenuTopComponent,
+    MenuLeftComponent,
+    MenuRestauListComponent,
+    AddMenuRestauComponent,
+    MenuRestauFormComponent,
+    MyMenuRestauComponent,
+    SetMenuRestauComponent,
+    ShowMenuRestauComponent,
+    MenuRestauViewComponent,
+    MenuRestauPaginationComponent,
+    ProfileFormComponent,
+    EditUserProfileComponent,
+    UsersListComponent,
+    UserAdministrationComponent,
+    MenuRestauNotFoundComponent,
+    FooterComponent,
+    PrivacyPolicyComponent,
+    LegalNoticesComponent,
+    CguComponent,
   ],
   imports: [
+    JwPaginationModule,
     BrowserModule,
-    BrowserAnimationsModule,
-    ApiModule,
-    FeatureModule,
-    SharedModule,
     AppRoutingModule,
-    RouterModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpTranslateLoader,
-        deps: [HttpClient]
-      }
-    })
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
+    ShareButtonsModule.withConfig({
+      debug:true,
+    }),
+    ShareIconsModule,
   ],
-  providers: [SnackbarService, DatePipe],
-  bootstrap: [AppComponent, DashboardComponent]
+  providers: [DatePipe, UserService,{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}], //
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-// AOT compilation support
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+
+
+
+
+

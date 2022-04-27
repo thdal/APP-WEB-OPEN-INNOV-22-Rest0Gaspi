@@ -1,6 +1,5 @@
 export const environment = {
-  production: true,
-  apiKey: "",
-  gandalfApiId: "",
-  apiUrl: ""
+  appBaseUrl: 'https://pte-epsi.thibaut-dalens.com/',
+  apiBaseUrl: 'https://thibaut-dalens.com:3000/',
+  production: true
 };

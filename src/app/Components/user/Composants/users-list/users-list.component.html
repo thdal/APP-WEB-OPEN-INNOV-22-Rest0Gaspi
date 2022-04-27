@@ -1,0 +1,101 @@
+<div style="background-color:#eaeaea;" id="outer-div">
+  <div style="text-align: center; margin-top: 25px;">
+    <h1>Gestion des utilisateurs</h1>
+  </div>
+  <div id="inner-div">
+    <div class="table-responsive">
+      <form [formGroup]="userTable">
+          <table class="table table-striped table-bordered table-gl">
+            <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Genre</th>
+              <th scope="col">Prénom</th>
+              <th scope="col">Nom</th>
+              <th scope="col">email</th>
+              <th scope="col">Profil</th>
+              <th scope="col">Statut</th>
+            </tr>
+            </thead>
+            <tbody>
+              <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls ; let i=index">
+                <!--Partie Settings -->
+                <tr *ngIf="group.value.id == editToggleId || group.value.id == ''" [formGroupName]="i">
+                <td class="align-middle" style="min-width:120px;" scope="row">
+                  <!-- Bouton validation -->
+                  <button type="submit" (click)="submitForm(i)" class="btn btn-valid-gl btn-edit-gl"><i class="bi bi-check-lg valid-icon"></i></button>
+                  <!-- Bouton annuler -->
+                  <button (click)="cancelEditRow(group)" class="btn btn-cancel-gl"><i class="bi bi-x-lg cancel-icon"></i></button>
+                </td>
+                <td class="align-middle">
+                  <select [ngClass]="{ 'is-invalid': submitted && fval(i).controls.genre_id.errors }" formControlName="genre_id" style="min-width:70px;" class="form-select form-control" aria-label="multiple select example">
+                    <option selected value="2">H</option>
+                    <option value="1">F</option>
+                  </select>
+                </td>
+                <td class="align-middle">
+                    <input [ngClass]="{ 'is-invalid': submitted && fval(i).controls.firstName.errors }" class="form-input-gl form-control" type="text" formControlName="firstName" [value]=group.value.firstName>
+                </td>
+                  <td class="align-middle">
+                    <input [ngClass]="{ 'is-invalid': submitted && fval(i).controls.lastName.errors }" class="form-input-gl form-control" type="text" formControlName="lastName" [value]=group.value.lastName>
+                  </td>
+                <td class="align-middle">
+                    <input [ngClass]="{ 'is-invalid': submitted && fval(i).controls.email.errors }" class="form-input-gl form-control" type="text" formControlName="email">
+                </td>
+                <td class="align-middle">
+                  <select [ngClass]="{ 'is-invalid': submitted && fval(i).controls.profile_id.errors }" formControlName="profile_id" class="form-select form-control" aria-label="multiple select example">
+                    <option selected value="1">Organisateur</option>
+                    <option value="2">Participant</option>
+                    <option value="3">Administrateur</option>
+                  </select>
+                </td>
+                <td style="padding-right: 25px;" class="align-middle">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" formControlName="isBanned" type="checkbox" id="flexSwitchCheckDefault0">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Profil banni</label>
+                  </div>
+                </td>
+              </tr>
+                <!-- Partie affichage -->
+                <tr *ngIf="group.value.id != editToggleId && group.value.id != ''">
+                  <td class="align-middle">
+                    <!-- Bouton édition -->
+                    <button class="edit" (click)="editRow(group)" class="btn btn-edit-gl"><i class="bi bi-pencil-fill edit-icon"></i></button>
+                    <!-- Bouton trash -->
+                    <button class="btn btn-trash-gl" (click)="delRow(group);" ><i class="bi bi-trash-fill trash-icon"></i></button>
+                    <button *ngIf="group.value.id ==''">vv</button>
+
+                  </td>
+                  <td class="align-middle">
+                    {{group.value.genre_id == 2 ? 'Homme':'Femme'}}
+                  </td>
+                  <td class="align-middle">
+                    {{group.value.firstName}}
+                  </td>
+                  <td class="align-middle">
+                    {{group.value.lastName}}
+                  </td>
+                  <td class="align-middle">
+                    {{group.value.email}}
+                  </td>
+                  <td class="align-middle" *ngIf="group.value.profile_id == 1">Organisateur</td>
+                  <td class="align-middle" *ngIf="group.value.profile_id == 2">Participant</td>
+                  <td class="align-middle" *ngIf="group.value.profile_id == 3">Administrateur</td>
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" disabled type="checkbox" [checked]="group.value.isBanned" id="flexSwitchCheckDefault">
+                      <label class="form-check-label" for="flexSwitchCheckDefault">Profil banni</label>
+                    </div>
+                  </td>
+                </tr>
+            </ng-container>
+            </tbody>
+          </table>
+      </form>
+    </div>
+  </div>
+</div>
+        <div style="text-align:right; margin-right:20px;">
+          <button (click)="addRow()"  style="cursor:pointer; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Ajouter un utilisateur</button>
+        </div>
+

@@ -1,0 +1,94 @@
+.float-child {
+  width: 50%;
+  float: left;
+  padding-right: 20px;
+}
+
+.float-child:first-child{
+  padding-right: 20px;
+}
+
+img{
+  width:100%;
+  height: 100%;
+  max-width:200px;
+  max-height: 200px;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  cursor: pointer;
+  color: #2e86de;
+  font-weight: bold;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  color: #2e86de;}
+
+#outer-div {
+  width: 100%;
+  text-align: center;
+  background-color: #0666a3
+}
+
+#inner-div {
+  display: inline-block;
+  margin: 20px 20px 20px 20px;
+  padding: 3px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+#outer-div label{
+  text-align: left;
+  display: block;
+}
+
+#outer-div label{
+  text-align: left;
+}
+
+.txt-value-gl{
+  font-size:20px;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.div-value-gl{
+  padding-left: 50px;
+  padding-top: 25px;
+  font-weight: lighter;
+}
+
+
+.div-value-txt-gl{
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 25px;
+  width:100%;
+}
+
+.txt-area-gl{
+  padding-right: 50px;
+  width:100%;
+  font-weight: lighter;
+}
+
+label{
+  color:black;
+  font-size:20px;
+  font-weight: normal ;
+}

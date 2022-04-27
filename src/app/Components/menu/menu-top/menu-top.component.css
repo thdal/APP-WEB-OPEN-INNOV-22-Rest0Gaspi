@@ -1,0 +1,80 @@
+/*Font GlobalLive navbar*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+.bg-navbar-gl{
+  background-color: #2e86de !important;
+}
+nav .navbar-nav li .nav-link-gl{
+  color: white !important;
+  cursor: pointer;
+}
+
+/*Couleurs admin : */
+
+.bg-navbar-admin-gl{
+  background-color: #485460 !important;
+}
+
+nav .navbar-nav li .nav-admin-link-gl{
+  color: white !important;
+  cursor: pointer;
+}
+
+.navbar-light .navbar-brand {
+  color:white;
+}
+
+.dropdown-menu>a{color:black; }
+
+.active-gl{
+  background-color: rgba(202, 229, 255, 0.46);
+  border-radius: 1px;
+}
+
+.active-mobile-gl{
+  background-color: rgba(202, 229, 255, 0.46);
+  border-radius: 1px;
+  width: 100%;
+  text-align: center;
+}
+
+.nav-item{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.navbar{
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .dropdown-menu > .dropdown-item:hover{
+  background-color: rgba(238, 238, 238, 0.81);
+}
+
+.navbar-brand-gl{
+  font-size:30px;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+
+.a-logout-visiteur-gl{
+  text-decoration: none;
+  color:white;
+  font-size:30px;
+  margin-right:10px;
+}
+
+.a-logout-visiteur-gl:hover{
+  text-decoration: none;
+  color: rgba(239, 239, 239, 0.98);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+}

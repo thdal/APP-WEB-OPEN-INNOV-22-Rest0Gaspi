@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="login-form">
+    <form style="padding-bottom:0px;" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+      <div class="avatar">
+        <img src="../../assets/img/icons/user/Connexion/user.svg" alt="Avatar">
+        <!--<i class="bi bi-person"></i>-->
+      </div>
+      <h2 id="login-title" class="text-center">Connexion</h2>
+      <div class="form-group" style="padding-bottom: 10px">
+        <input id="input-email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Email"/>
+        <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+          <div *ngIf="fval.email.errors.required">L'email est requis</div>
+          <div *ngIf="fval.email.errors.email">Entrez une adresse mail valide</div>
+        </div>
+      </div>
+      <div class="form-group" style="padding-bottom: 10px">
+        <input id="input-password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Mot de passe" />
+        <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
+          <div *ngIf="fval.password.errors.required">Le mot de passe est requis</div>
+        </div>
+      </div>
+      <div class="form-group" style="padding-bottom: 10px">
+        <button id="btn-submit" [disabled]="loading" class="btn btn-primary btn-login" style="width: 100%; margin-bottom:0px;">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
+          Se connecter
+        </button>
+        <hr>
+        <button id="btn-register" routerLink="/register" type="button" class="btn btn-success btn-signup" style="width: 100%; margin-top:0px;">
+          Créer un compte
+        </button>
+      </div>
+      <!--
+      <div class="clearfix" style="position:relative;">
+        <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+        <a href="#" class="pull-xs-right" style="position:absolute; right:0px;">Forgot Password?</a>
+      </div>-->
+    </form>
+      <div  *ngIf="submitted && errorService" style="font-size: 0.875em;color:#dc3545;">
+        <div style="text-align: center;" *ngIf="errorService"><span id="span-error-msg">{{this.errorMsg}}</span></div>
+      </div>
+    <p class="text-center small">Pas encore inscrit ? <a style="cursor:pointer;" (click)="visiteWebSite()"> Visitez l'application ici !</a></p>
+  </div>
+
+  <div id="id01" class="w3-modal">
+    <div style="top:20%; width:15%; position:relative;"  class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <p style="margin-top: 20px;">En visitant l'application, vous acceptez nos <a target="_blank" style="cursor:pointer; color:blue;" (click)="goToCgu();">Conditions générales d'utilisation</a>. Découvrez comment nous recueillons, utilisons et partageons vos données en lisant notre<a target="_blank" style="cursor:pointer; color:blue;" (click)="goToPrivacyPolicy();"> Politique de confidentialité.</a> (RGPD)</p>
+        <div style="right:0px; position:relative; margin-bottom:20px;">
+          <input class="btn btn-danger" onclick="document.getElementById('id01').style.display='none'" type='button' value='Annuler' id='btnNo' />
+          <input style="position:absolute; right:0px;" class="btn btn-primary" (click)="yesRGPD()" type='button' value='Go !' id='btnYes' />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+</div>

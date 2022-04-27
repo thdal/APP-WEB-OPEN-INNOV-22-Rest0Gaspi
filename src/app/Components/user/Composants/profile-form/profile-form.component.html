@@ -1,0 +1,40 @@
+<div style="background-color:#eaeaea;" id="outer-div">
+  <div style="text-align: center; margin-top: 25px;">
+    <h1>Éditer son profil</h1>
+  </div>
+  <div id="inner-div">
+    <!--<p style="text-align: left">Un organisateur est responsable de ses évenements, un compte organisateur peut être     définitivement banni de la plateforme si l'événement ne correspond pas aux normes de GlobalLive.</p>-->
+    <form  style="padding-bottom: 10px" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-12 col-sm-12 form-group-img-gl">
+          <!--<label style="display:block;" for="imgInp">Choose File</label>-->
+          <input accept="image/*" type='file' id="imgInp" class="inputfile form-input-gl" (change)="handleFileInput($event.target.files)"/>
+          <label class="form-label-gl" for="imgInp"><i class="bi bi-file-earmark-arrow-up"></i> Choisir une image ...</label>
+          <img width="200px" height="200px" *ngIf="!userImg" id="output" [src]="getProfileImage()" alt="User image"/>
+          <img width="200px" height="200px" id="outputImgSet" *ngIf="userImg" src="{{apiUrl}}userId{{userId}}/userImg.jpg" alt="User image from server"/>
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputFirstName">Prénom :</label>
+          <input formControlName="firstName" type="text" class="form-control form-input-gl" id="inputFirstName" placeholder="Prénom" >
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputLastName">Nom de famille :</label>
+          <input formControlName="lastName" type="text" class="form-control form-input-gl" id="inputLastName" placeholder="Nom de famille" >
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputEmail">Adresse Email :</label>
+          <input formControlName="email" type="text" class="form-control form-input-gl" id="inputEmail" placeholder="Email" >
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl">Type d'utilisateur :</label>
+          <label disabled class="form-control form-input-gl">{{this.profileType}}</label>
+        </div>
+      </div>
+      <div style="text-align:right; padding-right:40px; padding-bottom: 20px; margin-top:20px;">
+        <button style="cursor:pointer; margin-top:20px; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Modifier son profil</button>
+        <button style="cursor:pointer; margin-top:20px; text-decoration: none; font-size:20px" type="button" (click)="delRow()"  class="btn btn-trash-gl">Supprimer son profil</button>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,13 @@
+<!-- Top navbar -->
+<app-menu-top></app-menu-top>
+<div class="row g-0">
+  <div class="col-md-2 col-sm-0" style="padding: 0;">
+    <!-- Left bar -->
+    <app-menu-left *ngIf="!this.mobile"
+                   (sortEvent)="receiveSortingParameter($event)" >
+    </app-menu-left>
+  </div>
+  <div class="col-md-10 col-sm-12 div-col-10-gl">
+    <app-menu-restau-list [myEvents]="true" [sortParam]="sortParam" ></app-menu-restau-list>
+  </div>
+</div>

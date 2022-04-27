@@ -1,0 +1,207 @@
+<div *ngIf="!errorNotFound; then dataFound else dataNotFound"></div>
+<ng-template #dataFound>
+  <div style="min-height:50px; padding-top: 5px; background-color:
+   transparent; position:relative; margin-bottom:10px;" class="row g-0">
+    <!-- ************************ -->
+    <!-- En tête de liste desktop -->
+    <!-- ************************ -->
+      <div class="notMobile" *ngIf="!mobile">
+        <div style="background-color:transparent;" class="col-12">
+            <div style="margin-left: 10px; background-color:transparent; position:absolute;left:0px; padding-right: 10px;">
+              <div id="FiltrerParDate">
+                <div style=" left:0px; font-weight:lighter">
+                  <button (click)="toggleDateFilter();" class="btn btn-light btn-filtre-date"><i class="bi bi-calendar-date"></i> Filtrer par date</button>
+                  <div *ngIf="dateFilterActive" class="div-filtre-date">Entre le : <input #dateDebut (change)="onDateChanging($event)" class="input-date-gl" type="date"> et le : <input #dateFin (change)="onDateChanging($event)" class="input-date-gl" type="date"/>
+                    <span (click)="closeDateFilter();" style="cursor:pointer;"><i class="bi bi-x"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div id="AfficheNbEvents" style="float:left;">
+                <span class="light-span-gl">{{recEvents.length}} menu(s) </span><span class="heavy-span-gl">{{this.sortedBy}}</span><span class="light-span-gl"> trouvé(s)</span>
+              </div>
+            </div>
+            <div style="position:absolute;right:0px; padding-right: 10px; margin-bottom: 20px;">
+              <div style="float:left; margin-right:5px; top:50%;padding: 0.3rem 0rem;">
+                <span class="light-span-gl">Trier par</span>
+              </div>
+              <select style="float:left; width:76%;"  class="list-select-gl" aria-label="Default select example">
+                <option (click)="sortListAlphaAsc()" selected>ordre alphabétique (A à Z)</option>
+                <option (click)="sortListAlphaDesc()">ordre alphabétique (Z à A)</option>
+                <option (click)="sortListDateDesc()">date (décroissant)</option>
+                <option (click)="sortListDateAsc()">date (croissant)</option>
+              </select>
+            </div>
+          </div>
+      </div>
+    <!-- *********************** -->
+    <!-- En tête de liste mobile -->
+    <!--  ********************** -->
+    <div class="isMobile" *ngIf="mobile">
+      <div style="background-color:transparent;" class="row">
+        <div class="col-9">
+          <div>
+            <select style="float:left; width:67%;"  class="list-select-gl" aria-label="Default select example">
+              <option selected>Trier la liste</option>
+              <option (click)="sortListAlphaAsc()">ordre alphabétique (A à Z)</option>
+              <option (click)="sortListAlphaDesc()">ordre alphabétique (Z à A)</option>
+              <option (click)="sortListDateDesc()">date (décroissant)</option>
+              <option (click)="sortListDateAsc()">date (croissant)</option>
+            </select>
+          </div>
+        </div>
+        <div style="text-align: right;" class="col-3">
+          <div class="filter-div" style=" margin-right:0.8rem; font-weight:lighter">
+            <button (click)="toggleDateFilter();" class="btn btn-light btn-filtre-date"><i style="font-weight: bold" class="bi bi-sliders"></i>Filtrer</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+
+
+            <div  *ngIf="dateFilterActive" class="dropdown show">
+              <a style="font-weight: lighter" class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filtrer par catégorie
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item a-pointer"  (click)="getEventsByType(1,this.routeUserId ? this.routeUserId : false)">Culturel</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(2,this.routeUserId ? this.routeUserId : false)" >Artistique</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(3,this.routeUserId ? this.routeUserId : false)">Sportif</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(4,this.routeUserId ? this.routeUserId : false)">Pédadogique</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(5,this.routeUserId ? this.routeUserId : false)">Geek</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div style="margin-top:2px" *ngIf="dateFilterActive" class="dropdown show">
+              <a style="font-weight: lighter" class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filtrer par canal
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(1,this.routeUserId ? this.routeUserId : false)">Youtube</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(2,this.routeUserId ? this.routeUserId : false)">Facebook</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(3,this.routeUserId ? this.routeUserId : false)">Twitch</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(4,this.routeUserId ? this.routeUserId : false)">Instagram</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(5,this.routeUserId ? this.routeUserId : false)">Zoom</a>
+                <a class="dropdown-item a-pointer" (click)="getEventsByType(6,this.routeUserId ? this.routeUserId : false)">Snapchat</a>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 5px;" class="col-sm-12">
+            <div style="margin-left:1px;" *ngIf="dateFilterActive" class="div-filtre-date">Entre : <input #dateDebut (change)="onDateChanging($event)" class="input-date-gl" type="date"> et : <input #dateFin (change)="onDateChanging($event)" class="input-date-gl" type="date"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+          <div style="margin-bottom:-10px; margin-top:2px; margin-left:2px;" class="AfficheNbEvents">
+            <span class="light-span-gl">{{recEvents.length}} menu(s) </span><span class="heavy-span-gl">{{this.sortedBy}}</span><span class="light-span-gl"> trouvé(s)</span>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- ************************ -->
+  <!--           CARD           -->
+  <!-- ************************ -->
+  <div class="row g-0 overflow-auto">
+    <div *ngFor="let item of pageOfItems" class="col-md-2 col-sm-12 div-card-parent-gl">
+      <div class="card card-gl">
+        <div class="div-img-parent-gl">
+          <img *ngIf="!item.eventImg" class="card-img-top list-img-gl" src="../../../../../assets/img/icons/menu/calendar.svg" alt="Menu image cap">
+          <img *ngIf="item.eventImg" class="card-img-top list-img-gl" src="{{apiUrl}}eventId{{item.id}}/eventImg.jpg" alt="Menu image cap">
+        </div>
+        <div class="card-body" style="padding: 1px 10px;">
+          <h5 class="card-title">{{item.eventName}}</h5>
+          <p class="card-text p-description-gl">{{item.eventDescription}}</p>
+        </div>
+        <div class="card-footer" style="padding: 0px;">
+          <div class="div-btn-gl">
+            <button style="text-decoration: none;" class="btn btn-link" (click)="showEvent(item.id)">Afficher</button>
+            <button class="btn btn-edit-gl" *ngIf="userId == item.userId || profileId == 3" (click)="setEvent(item.id)"><i class="bi bi-pencil-fill edit-icon"></i></button>
+            <button class="btn btn-trash-gl" *ngIf="userId == item.userId || profileId == 3" (click)="delEvent(item.id)"><i class="bi bi-trash-fill trash-icon"></i></button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Date : {{this.item.eventDate | date:"dd-MM-yyyy"}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;" class="row g-0">
+        <div  [ngStyle]="{'display': recEvents.length <= 8 ? 'none' : 'block' }" class="pb-0 pt-3">
+          <jw-pagination-gl style="position:absolute; right:0px; padding-right: 10px;" [items]="recEvents" [pageSize]="pageSize" (changePage)="onChangePage($event)"></jw-pagination-gl>
+        </div>
+  </div>
+</ng-template>
+<ng-template #dataNotFound>
+<!-- *********************** -->
+<!-- En tête de liste mobile -->
+<!--  ********************** -->
+<div>
+  <div class="isMobile" *ngIf="mobile">
+    <div style="background-color:transparent;" class="row">
+      <div class="col-9">
+        <div>
+          <select style="float:left; width:67%;"  class="list-select-gl" aria-label="Default select example">
+            <option selected>Trier la liste</option>
+            <option (click)="sortListAlphaAsc()">ordre alphabétique (A à Z)</option>
+            <option (click)="sortListAlphaDesc()">ordre alphabétique (Z à A)</option>
+            <option (click)="sortListDateDesc()">date (décroissant)</option>
+            <option (click)="sortListDateAsc()">date (croissant)</option>
+          </select>
+        </div>
+      </div>
+      <div style="text-align: right;" class="col-3">
+        <div class="filter-div" style=" margin-right:0.8rem; font-weight:lighter">
+          <button (click)="toggleDateFilter();" class="btn btn-light btn-filtre-date"><i style="font-weight: bold" class="bi bi-sliders"></i>Filtrer</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+
+
+          <div  *ngIf="dateFilterActive" class="dropdown show">
+            <a style="font-weight: lighter" class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filtrer par catégorie
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item a-pointer"  (click)="getEventsByType(1,this.routeUserId ? this.routeUserId : false)">Culturel</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(2,this.routeUserId ? this.routeUserId : false)" >Artistique</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(3,this.routeUserId ? this.routeUserId : false)">Sportif</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(4,this.routeUserId ? this.routeUserId : false)">Pédadogique</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(5,this.routeUserId ? this.routeUserId : false)">Geek</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div style="margin-top:2px" *ngIf="dateFilterActive" class="dropdown show">
+            <a style="font-weight: lighter" class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filtrer par canal
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(1,this.routeUserId ? this.routeUserId : false)">Youtube</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(2,this.routeUserId ? this.routeUserId : false)">Facebook</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(3,this.routeUserId ? this.routeUserId : false)">Twitch</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(4,this.routeUserId ? this.routeUserId : false)">Instagram</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(5,this.routeUserId ? this.routeUserId : false)">Zoom</a>
+              <a class="dropdown-item a-pointer" (click)="getEventsByType(6,this.routeUserId ? this.routeUserId : false)">Snapchat</a>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 5px;" class="col-sm-12">
+          <div style="margin-left:1px;" *ngIf="dateFilterActive" class="div-filtre-date">Entre : <input #dateDebut (change)="onDateChanging($event)" class="input-date-gl" type="date"> et : <input #dateFin (change)="onDateChanging($event)" class="input-date-gl" type="date"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div style="margin-bottom:-10px; margin-top:2px; margin-left:2px;" class="AfficheNbEvents">
+        <span class="light-span-gl">{{recEvents.length}} menu(s) </span><span class="heavy-span-gl">{{this.sortedBy}}</span><span class="light-span-gl"> trouvé(s)</span>
+      </div>
+    </div>
+  </div>
+  <!-- *********************** -->
+  <!--           404           -->
+  <!--  ********************** -->
+  <app-event-not-found [eventNotFound]="eventNotFound"></app-event-not-found>
+</div>
+</ng-template>

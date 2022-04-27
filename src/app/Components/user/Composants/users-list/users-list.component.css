@@ -1,0 +1,78 @@
+.table-gl{
+  margin-bottom:0px;
+}
+#outer-div {
+  width: 100%;
+  text-align: center;
+  background-color: #0666a3
+}
+
+#inner-div {
+  margin: 20px 20px 20px 20px;
+  padding: 3px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+#outer-div label{
+  text-align: left;
+  display: block;
+}
+
+.form-input-gl{
+  max-width:200px;
+}
+/* Icons btn */
+
+.btn-edit-gl{
+  margin-right:2px;
+  border: 1px solid rgba(212, 212, 212, 0.34);
+}
+
+.btn-trash-gl{
+  margin-right:2px;
+  border: 1px solid rgba(212, 212, 212, 0.34);
+}
+
+.edit-icon{
+  color: #ffc935;
+}
+
+.edit-icon:hover {
+  color: #ffbe00;
+}
+
+.trash-icon{
+  color: #ff3d50;
+}
+
+.trash-icon:hover {
+  color: #dc3545;
+}
+
+.btn-valid-gl{
+  margin-right:2px;
+  border: 1px solid rgba(212, 212, 212, 0.34);
+}
+
+.btn-cancel-gl{
+  margin-right:2px;
+  border: 1px solid rgba(212, 212, 212, 0.34);
+}
+
+.valid-icon{
+  color: #3dce00;
+}
+
+.valid-icon:hover {
+  color: #33a514;
+}
+
+.cancel-icon{
+  color: #3578ff;
+}
+
+.cancel-icon:hover {
+  color: #0048ff;
+}

@@ -1,0 +1,107 @@
+.float-child {
+  width: 50%;
+  float: left;
+  padding-right: 20px;
+}
+
+.float-child:first-child{
+  padding-right: 20px;
+}
+
+img{
+  width:100%;
+  height: 100%;
+  max-width:200px;
+  max-height: 200px;
+  margin-top:10px;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  cursor: pointer;
+  color: #2e86de;
+  font-weight: normal;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  color: #2e86de;}
+
+#outer-div {
+  width: 100%;
+  text-align: center;
+  background-color: #0666a3
+}
+
+#inner-div {
+  display: inline-block;
+  margin: 20px 20px 20px 20px;
+  padding: 3px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+#outer-div label{
+  text-align: left;
+  display: block;
+}
+
+#outer-div label{
+  text-align: left;
+}
+
+.form-group-gl{
+  padding-left:40px;
+  padding-right:40px;
+  padding-top:10px;
+}
+
+.form-group-img-gl{
+  padding-left:40px;
+  padding-right:40px;
+  padding-top:10px;
+  text-align: left;
+}
+
+.float-child-txtarea{
+  float:left;
+  width:100%;
+}
+
+.form-label-gl{
+  color:black;
+  font-size:20px;
+}
+
+.form-input-gl{
+  font-size:20px;
+  font-weight: lighter;
+}
+
+.btn-trash-gl{
+  color: #ff3d50;
+  font-size:20px;
+}
+
+.trash-icon{
+  color: #ff3d50;
+  font-size:20px;
+}
+
+.trash-icon:hover {
+  color: #dc3545;
+}
+
+.div-value-txt-gl{
+  width:100%;
+}
+

@@ -1,0 +1,76 @@
+<div style="background-color:#eaeaea;" id="outer-div">
+  <div style="text-align: center; margin-top: 25px;">
+    <h1 *ngIf="!setEvent">Ajouter un menu</h1>
+    <h1 *ngIf="setEvent">Modifier un menu</h1>
+  </div>
+<div id="inner-div">
+    <!--<p style="text-align: left">Un organisateur est responsable de ses évenements, un compte organisateur peut être     définitivement banni de la plateforme si l'événement ne correspond pas aux normes de GlobalLive.</p>-->
+  <form  style="padding-bottom: 10px" [formGroup]="eventForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-12 col-sm-12 form-group-img-gl">
+          <!--<label style="display:block;" for="imgInp">Choose File</label>-->
+          <input accept="image/*" type='file' id="imgInp" class="inputfile form-input-gl" (change)="handleFileInput($event.target.files)"/>
+          <label class="form-label-gl" for="imgInp"><i class="bi bi-file-earmark-arrow-up"></i> Choisir une image ...</label>
+          <img *ngIf="!setEvent || setEvent && !eventImg" id="output" src="../../../../../assets/img/icons/menu/menu.png" alt="event image"/>
+          <img *ngIf="setEvent && eventImg" id="outputImgSet" src="{{apiUrl}}eventId{{eventId}}/eventImg.jpg" alt="event image"/>
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputEvent">Nom du menu</label>
+          <input formControlName="eventName" type="text" class="form-control form-input-gl" id="inputEvent" placeholder="Nom" [ngClass]="{ 'is-invalid': submitted && fval.eventName.errors }">
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputDate">Date du menu</label>
+          <input formControlName="eventDate" type="date" class="form-control form-input-gl" id="inputDate" placeholder="Date" [ngClass]="{ 'is-invalid': submitted && fval.eventDate.errors }">
+        </div>
+       <!-- <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputHour">Heure du menu</label>
+          <input formControlName="eventHour" type="time" class="form-control form-input-gl" id="inputHour" placeholder="Heure" [ngClass]="{ 'is-invalid': submitted && fval.eventHour.errors }">
+        </div>-->
+
+      <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-4 col-sm-12 form-group-gl">
+        <label class="form-label-gl">Type de menu</label>
+        <select formControlName="typeEventId" name="selectEventsType" class="form-select form-input-gl" aria-label="Default select example" [ngClass]="{ 'is-invalid': submitted && fval.typeEventId.errors }">
+          <option [ngValue]="null" disabled>Selectionnez une catégorie :</option>
+          <option *ngFor="let eventType of eventTypesRecord;" [ngValue]="eventType.id">{{eventType.typeEventName}}</option>
+        </select>
+        <!--<div *ngIf="submitted && fval.selectEventsType.errors" class="invalid-feedback">
+          <div *ngIf="fval.selectEventsType.errors.required">Choisissez une catégorie.</div>
+        </div>-->
+      </div>
+      <!--<div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-4 col-sm-12 form-group-gl">
+        <label class="form-label-gl" >Canal du menu </label>
+        <select formControlName="canalEventId" class="form-select form-input-gl" aria-label="Default select example" [ngClass]="{ 'is-invalid': submitted && fval.canalEventId.errors }">
+          <option [ngValue]="null" disabled>Selectionnez un canal :</option>
+          <option *ngFor="let eventCanal of eventCanalsRecord;" [ngValue]="eventCanal.id">{{eventCanal.canalEventName}}</option>
+      </select>
+      </div>-->
+      <!--<div [ngClass]="{'float-child' : !this.mobile}" class="form-group form-group-gl">
+        <label class="form-label-gl" for="inputAddress">Lien du live</label>
+        <input formControlName="eventLink" type="text" class="form-control form-input-gl" id="inputLink" placeholder="www.event.com" [ngClass]="{ 'is-invalid': submitted && fval.eventLink.errors }">
+      </div>-->
+      <div [ngClass]="{'float-child' : !this.mobile}" class="form-group form-group-gl">
+        <label class="form-label-gl" for="inputAddress">Lieu</label>
+        <input formControlName="eventAddress" type="text" class="form-control form-input-gl" id="inputAddress" placeholder="1234 Main St" [ngClass]="{ 'is-invalid': submitted && fval.eventAddress.errors }">
+      </div>
+      <div [ngClass]="{'float-child-txtarea' : !this.mobile}" class="form-group form-group-gl" style="padding-bottom: 20px">
+        <label class="form-label-gl" for="exampleFormControlTextarea">Ajouter une description :</label>
+        <textarea formControlName="eventDescription" class="form-control form-input-gl" id="exampleFormControlTextarea" rows="3">
+        </textarea>
+      </div>
+      </div>
+
+      <div [ngClass]="{'float-child' : !this.mobile}" style="width:100%;text-align:right; padding-right:40px; padding-bottom: 20px;">
+
+
+      <button *ngIf="!setEvent" style="cursor:pointer; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Ajouter le menu</button>
+      <button *ngIf="setEvent" style="cursor:pointer; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Modifier le menu</button>
+
+
+
+
+
+        <a class="btn btn-trash-gl" *ngIf="setEvent" (click)="delEvent()"><i class="bi bi-trash-fill trash-icon"></i>Supprimer un menu</a>
+      </div>
+  </form>
+    </div>
+</div>

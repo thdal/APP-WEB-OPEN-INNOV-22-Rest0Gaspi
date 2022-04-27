@@ -1,0 +1,56 @@
+<div style="background-color: #eaeaea;">
+  <div style="background-color:#eaeaea;" id="outer-div">
+  <div style="text-align: center; margin-top: 25px;" >
+    <h1>{{this.menuOpen.menuName}}</h1>
+  </div>
+</div>
+  <div id="inner-div">
+      <div class="row">
+        <div class="col-md-3 col-sm-12 div-value-gl">
+          <img *ngIf="!eventImg" id="output" src="../../../../../assets/img/icons/menu/menu.png" alt="event image"/>
+          <img *ngIf="eventImg" id="outputImgSet" src="{{apiUrl}}eventId{{eventId}}/eventImg.jpg" alt="event image"/>
+        </div>
+        <div class="col-md-3 col-sm-12 div-value-gl">
+          <label>Lien du live :</label>
+          <div class="txt-value-gl"><a target="_blank"  href="http://{{this.menuOpen.menuLink}}">{{this.menuOpen.menuLink}}</a></div>
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="col-md-2 col-sm-12 float-child div-value-gl">
+          <label>Partager sur les réseaux sociaux :</label>
+          <div class="txt-value-gl">
+            <share-buttons
+              theme="material-dark"
+              show="11"
+              title="Évenement GlobalLive"
+              url="{{this.shareUrl}}"
+              autoSetMeta="false">
+            </share-buttons>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 div-value-gl">
+          <label>Date du menu :</label>
+          <div class="txt-value-gl">{{this.menuOpen.menuDate | date:"dd-MM-yyyy"}}</div>
+        </div>
+        <div class="col-md-6 col-sm-12 div-value-gl">
+          <label>Heure du menu :</label>
+          <div class="txt-value-gl">{{this.eventHour}}</div>
+        </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="col-md-6 col-sm-12 div-value-gl">
+          <label>Lieu du menu :</label>
+          <div class="txt-value-gl">{{this.menuOpen.menuAddress}}</div>
+        </div>
+
+      <div [ngClass]="{'float-child' : !this.mobile}" class="col-md-6 col-sm-12 div-value-gl">
+        <label>Type du menu :</label>
+        <div class="txt-value-gl">{{this.typeName}}</div>
+      </div>
+      <div [ngClass]="{'float-child' : !this.mobile}" class="col-md-6 col-sm-12 div-value-gl">
+        <label>Canal du menu :</label>
+        <div class="txt-value-gl">{{this.canalName}}</div>
+      </div>
+      <div [ngClass]="{'float-child' : !this.mobile}" class="col-md-12 col-sm-12 div-value-txt-gl" style="padding-bottom: 20px">
+      <label>Description du menu :</label>
+        <textarea disabled class="txt-value-gl txt-area-gl" style="min-height: 105px; word-wrap:break-word;">{{this.menuOpen.menuDescription}}</textarea>
+      </div>
+  </div>
+</div>
+</div>

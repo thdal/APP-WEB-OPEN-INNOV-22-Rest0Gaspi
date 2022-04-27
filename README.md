@@ -1,27 +1,32 @@
-# APPWEBRest0Gaspi
+# GlobalLive 
+### Projet de validation - EPSI B3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+-------------
 
-## Development server
+![alt text](https://github.com/thdal/PTE_APPLICATION_WEB/blob/main/src/assets/img/git/FrontAppWeb.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Lien vers l'application en ligne : https://pte-epsi.thibaut-dalens.com/#/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-------------
 
-## Build
+### Configuration du projet
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+npm install
 
-## Running unit tests
+npm i ngx-toastr
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+npm i font-awesome
 
-## Running end-to-end tests
+npm i bootstrap
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+npm i jw-angular-pagination
 
-## Further help
+npm i ngx-sharebuttons
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Informations
+
+
+Icones du menu gauche :
+
+Auteur : Freepik
